@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -23,6 +24,7 @@ public class School implements Serializable {
     @NotNull(message = "School name must be provided")
     private String name;
 
+    @Valid
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Address address;
