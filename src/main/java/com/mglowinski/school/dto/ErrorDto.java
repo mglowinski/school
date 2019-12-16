@@ -10,12 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ErrorDto {
 
-    private HttpStatus status;
+    private HttpStatus error;
     private String message;
-    private List<String> errors;
-
-    public ErrorDto(HttpStatus status, String message) {
-        this.status = status;
-        this.message = message;
-    }
+    private List<String> details;
 }
