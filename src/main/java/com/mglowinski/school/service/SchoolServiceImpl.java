@@ -54,4 +54,10 @@ public class SchoolServiceImpl implements SchoolService {
         schoolRepository.save(school);
     }
 
+    @Override
+    public void deleteSchoolById(Long id) {
+        School school = getSchoolById(id);
+        schoolRepository.delete(school);
+    }
+
 }

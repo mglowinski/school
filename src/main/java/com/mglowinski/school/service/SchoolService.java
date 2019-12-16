@@ -14,4 +14,6 @@ public interface SchoolService {
     School getSchoolById(Long id);
 
     void updateAddress(Long id, Map<String, Object> updateFields);
+
+    void deleteSchoolById(Long id);
 }
