@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -28,4 +29,7 @@ public class School implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Address address;
+
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+    private List<Subject> subjects;
 }
