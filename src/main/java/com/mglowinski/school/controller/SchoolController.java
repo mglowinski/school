@@ -29,4 +29,9 @@ public class SchoolController {
     public ResponseEntity<School> createSchool(@Valid @RequestBody School school) {
         return ResponseEntity.status(201).body(schoolService.createSchool(school));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<School> getSchoolById(@PathVariable Long id) {
+        return ResponseEntity.status(200).body(schoolService.getSchoolById(id));
+    }
 }
