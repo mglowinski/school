@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SchoolServiceImpl implements SchoolService {
@@ -33,4 +34,24 @@ public class SchoolServiceImpl implements SchoolService {
         return schoolRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("School not found with id: " + id));
     }
+
+    @Override
+    public void updateAddress(Long id, Map<String, Object> updateFields) {
+        School school = getSchoolById(id);
+
+        if (updateFields.containsKey("street")) {
+            school.getAddress().setStreet((String) updateFields.get("street"));
+        }
+
+        if (updateFields.containsKey("city")) {
+            school.getAddress().setCity((String) updateFields.get("city"));
+        }
+
+        if (updateFields.containsKey("zipCode")) {
+            school.getAddress().setZipCode((String) updateFields.get("zipCode"));
+        }
+
+        schoolRepository.save(school);
+    }
+
 }

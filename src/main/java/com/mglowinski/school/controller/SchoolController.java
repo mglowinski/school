@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/schools")
@@ -34,4 +35,12 @@ public class SchoolController {
     public ResponseEntity<School> getSchoolById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(schoolService.getSchoolById(id));
     }
+
+    @PatchMapping("/{id}/address")
+    public ResponseEntity<Void> updateSchoolAddress(@PathVariable Long id,
+                                                    @RequestBody Map<String, Object> updateFields) {
+        schoolService.updateAddress(id, updateFields);
+        return ResponseEntity.noContent().build();
+    }
+
 }
