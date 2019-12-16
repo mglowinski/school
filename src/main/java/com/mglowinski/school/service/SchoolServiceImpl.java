@@ -5,6 +5,7 @@ import com.mglowinski.school.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -25,5 +26,11 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public School createSchool(School school) {
         return schoolRepository.save(school);
+    }
+
+    @Override
+    public School getSchoolById(Long id) {
+        return schoolRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("School not found with id: " + id));
     }
 }

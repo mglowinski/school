@@ -9,4 +9,6 @@ public interface SchoolService {
     List<School> getAllSchools();
 
     School createSchool(School school);
+
+    School getSchoolById(Long id);
 }
