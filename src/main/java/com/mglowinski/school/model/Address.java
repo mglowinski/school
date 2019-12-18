@@ -8,15 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address implements Serializable {
-
-    private static final long serialVersionUID = 4950705098901614008L;
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

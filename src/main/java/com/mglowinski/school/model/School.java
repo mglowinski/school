@@ -5,16 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class School implements Serializable {
-
-    private static final long serialVersionUID = -4989942092209420575L;
+public class School {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
