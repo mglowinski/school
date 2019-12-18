@@ -2,16 +2,15 @@ package com.mglowinski.school.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
-public class Subject implements Serializable {
-
-    private static final long serialVersionUID = 6594299910198589846L;
+public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -1,5 +1,6 @@
 package com.mglowinski.school.utils;
 
+import com.mglowinski.school.dto.CreateSubjectDto;
 import com.mglowinski.school.dto.SchoolDto;
 import com.mglowinski.school.dto.SubjectDto;
 import com.mglowinski.school.model.School;
@@ -30,8 +31,8 @@ public class ObjectMapper {
         return modelMapper.map(school, SchoolDto.class);
     }
 
-    public Subject mapSubjectDtoToEntity(SubjectDto subjectDto) {
-        return modelMapper.map(subjectDto, Subject.class);
+    public Subject mapCreateSubjectDtoToEntity(CreateSubjectDto createSubjectDto) {
+        return modelMapper.map(createSubjectDto, Subject.class);
     }
 
     public SubjectDto mapSubjectEntityToDto(Subject subject) {
