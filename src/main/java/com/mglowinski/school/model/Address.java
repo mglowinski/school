@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -23,12 +22,7 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @NotNull(message = "School address street must be provided")
     private String street;
-
-    @NotNull(message = "School address city must be provided")
     private String city;
-
-    @NotNull(message = "School address zip-code must be provided")
     private String zipCode;
 }
