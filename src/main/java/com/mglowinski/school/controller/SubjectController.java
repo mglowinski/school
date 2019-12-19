@@ -1,15 +1,16 @@
 package com.mglowinski.school.controller;
 
+import com.mglowinski.school.dto.CreateSubjectDto;
 import com.mglowinski.school.dto.SubjectDto;
 import com.mglowinski.school.model.Subject;
 import com.mglowinski.school.service.SubjectService;
 import com.mglowinski.school.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,14 @@ public class SubjectController {
                              ObjectMapper objectMapper) {
         this.subjectService = subjectService;
         this.objectMapper = objectMapper;
+    }
+
+    @PostMapping("/schools/{id}/subjects")
+    public ResponseEntity<SubjectDto> createSubject(@PathVariable Long id,
+                                                    @RequestBody @Valid CreateSubjectDto createSubjectDto) {
+        Subject subject = objectMapper.mapCreateSubjectDtoToEntity(createSubjectDto);
+        Subject createdSubject = subjectService.createSubject(id, subject);
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapSubjectEntityToDto(createdSubject));
     }
 
     @GetMapping("/subjects")

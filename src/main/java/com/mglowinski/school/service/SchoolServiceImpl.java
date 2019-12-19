@@ -1,7 +1,6 @@
 package com.mglowinski.school.service;
 
 import com.mglowinski.school.model.School;
-import com.mglowinski.school.model.Subject;
 import com.mglowinski.school.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,14 +58,6 @@ public class SchoolServiceImpl implements SchoolService {
     public void deleteSchoolById(Long id) {
         School school = getSchoolById(id);
         schoolRepository.delete(school);
-    }
-
-    @Override
-    public void addSubjectToSchool(Long id, Subject subject) {
-        School school = getSchoolById(id);
-        school.getSubjects().add(subject);
-        subject.setSchool(school);
-        schoolRepository.save(school);
     }
 
 }

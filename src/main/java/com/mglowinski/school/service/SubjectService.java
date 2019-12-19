@@ -8,4 +8,5 @@ public interface SubjectService {
 
     List<Subject> getAllSubjects();
 
+    Subject createSubject(Long schoolId, Subject subject);
 }

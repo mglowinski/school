@@ -1,9 +1,7 @@
 package com.mglowinski.school.controller;
 
-import com.mglowinski.school.dto.CreateSubjectDto;
 import com.mglowinski.school.dto.SchoolDto;
 import com.mglowinski.school.model.School;
-import com.mglowinski.school.model.Subject;
 import com.mglowinski.school.service.SchoolService;
 import com.mglowinski.school.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,14 +60,6 @@ public class SchoolController {
                                                     @RequestBody Map<String, Object> updateFields) {
         schoolService.updateAddress(id, updateFields);
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/schools/{id}/subjects")
-    public ResponseEntity<CreateSubjectDto> addSubjectToSchool(@PathVariable Long id,
-                                                               @RequestBody CreateSubjectDto createSubjectDto) {
-        Subject subject = objectMapper.mapCreateSubjectDtoToEntity(createSubjectDto);
-        schoolService.addSubjectToSchool(id, subject);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createSubjectDto);
     }
 
 }
