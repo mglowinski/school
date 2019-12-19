@@ -15,5 +15,4 @@ public class SubjectDto implements Serializable {
 
     private Long id;
     private String name;
-    private SchoolDto school;
 }

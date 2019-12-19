@@ -28,21 +28,21 @@ public class SubjectController {
         this.objectMapper = objectMapper;
     }
 
-    @PostMapping("/schools/{id}/subjects")
-    public ResponseEntity<SubjectDto> createSubject(@PathVariable Long id,
-                                                    @RequestBody @Valid CreateSubjectDto createSubjectDto) {
-        Subject subject = objectMapper.mapCreateSubjectDtoToEntity(createSubjectDto);
-        Subject createdSubject = subjectService.createSubject(id, subject);
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapSubjectEntityToDto(createdSubject));
-    }
-
-    @GetMapping("/subjects")
-    public ResponseEntity<List<SubjectDto>> getAllSubjects() {
-        List<Subject> subjects = subjectService.getAllSubjects();
+    @GetMapping("/schools/{schoolId}/subjects")
+    public ResponseEntity<List<SubjectDto>> getAllSubjectsBySchoolId(@PathVariable Long schoolId) {
+        List<Subject> subjects = subjectService.getAllSubjectsBySchoolId(schoolId);
         List<SubjectDto> subjectsDto = subjects.stream()
                 .map(objectMapper::mapSubjectEntityToDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(subjectsDto);
+    }
+
+    @PostMapping("/schools/{schoolId}/subjects")
+    public ResponseEntity<SubjectDto> createSubject(@PathVariable Long schoolId,
+                                                    @RequestBody @Valid CreateSubjectDto createSubjectDto) {
+        Subject subject = objectMapper.mapCreateSubjectDtoToEntity(createSubjectDto);
+        Subject createdSubject = subjectService.createSubject(schoolId, subject);
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapSubjectEntityToDto(createdSubject));
     }
 
 }
