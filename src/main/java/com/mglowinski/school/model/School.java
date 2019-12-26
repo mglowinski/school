@@ -28,4 +28,7 @@ public class School {
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     private List<Class> classes;
+
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+    private List<Teacher> teachers;
 }

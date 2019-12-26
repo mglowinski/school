@@ -28,4 +28,6 @@ public class SchoolDto implements Serializable {
     private List<SubjectDto> subjects;
 
     private List<ClassDto> classes;
+
+    private List<TeacherDto> teachers;
 }
