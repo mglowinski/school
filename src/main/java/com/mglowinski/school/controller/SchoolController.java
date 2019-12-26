@@ -1,5 +1,6 @@
 package com.mglowinski.school.controller;
 
+import com.mglowinski.school.dto.CreateSchoolDto;
 import com.mglowinski.school.dto.SchoolDto;
 import com.mglowinski.school.model.School;
 import com.mglowinski.school.service.SchoolService;
@@ -37,8 +38,8 @@ public class SchoolController {
     }
 
     @PostMapping("/schools")
-    public ResponseEntity<SchoolDto> createSchool(@Valid @RequestBody SchoolDto schoolDto) {
-        School school = objectMapper.mapSchoolDtoToEntity(schoolDto);
+    public ResponseEntity<SchoolDto> createSchool(@Valid @RequestBody CreateSchoolDto createSchoolDto) {
+        School school = objectMapper.mapCreateSchoolDtoToEntity(createSchoolDto);
         School schoolCreated = schoolService.createSchool(school);
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapSchoolEntityToDto(schoolCreated));
     }
