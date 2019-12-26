@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +24,8 @@ public class SchoolDto implements Serializable {
     @NotNull(message = "Address must be provided")
     @Valid
     private AddressDto address;
+
+    private List<SubjectDto> subjects;
+
+    private List<ClassDto> classes;
 }
