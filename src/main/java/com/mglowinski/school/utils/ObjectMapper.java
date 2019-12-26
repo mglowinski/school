@@ -4,6 +4,7 @@ import com.mglowinski.school.dto.*;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.model.School;
 import com.mglowinski.school.model.Subject;
+import com.mglowinski.school.model.Teacher;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ public class ObjectMapper {
         School school = modelMapper.map(createSchoolDto, School.class);
         school.setSubjects(Collections.emptyList());
         school.setClasses(Collections.emptyList());
+        school.setTeachers(Collections.emptyList());
         return school;
     }
 
@@ -45,6 +47,14 @@ public class ObjectMapper {
 
     public Class mapClassDtoToEntity(ClassDto classDto) {
         return modelMapper.map(classDto, Class.class);
+    }
+
+    public TeacherDto mapTeacherEntityToDto(Teacher teacher) {
+        return modelMapper.map(teacher, TeacherDto.class);
+    }
+
+    public Teacher mapTeacherDtoToEntity(TeacherDto teacherDto) {
+        return modelMapper.map(teacherDto, Teacher.class);
     }
 
 }
