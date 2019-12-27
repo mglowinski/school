@@ -27,4 +27,7 @@ public class Teacher {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private School school;
+
+    @OneToOne(mappedBy = "tutor", fetch = FetchType.LAZY)
+    private Class schoolClass;
 }

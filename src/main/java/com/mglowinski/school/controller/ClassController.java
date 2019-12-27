@@ -1,5 +1,6 @@
 package com.mglowinski.school.controller;
 
+import com.mglowinski.school.dto.AssignedTutorDto;
 import com.mglowinski.school.dto.ClassDto;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.service.ClassService;
@@ -44,4 +45,11 @@ public class ClassController {
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapClassEntityToDto(createdClass));
     }
 
+    @PutMapping("/schools/{schoolId}/classes/{classId}/tutor/assign")
+    public ResponseEntity<Void> assignTutorToClass(@PathVariable Long schoolId,
+                                                   @PathVariable Long classId,
+                                                   @RequestBody AssignedTutorDto assignedTutor) {
+        classService.assignTutor(schoolId, classId, assignedTutor);
+        return ResponseEntity.noContent().build();
+    }
 }
