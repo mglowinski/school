@@ -52,4 +52,12 @@ public class ClassController {
         classService.assignTutor(schoolId, classId, assignedTutor);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/schools/{schoolId}/classes/{classId}")
+    public ResponseEntity<ClassDto> getClassBySchoolIdAndClassId(@PathVariable Long schoolId,
+                                                                 @PathVariable Long classId) {
+        Class schoolClass = classService.getClassBySchoolIdAndClassId(schoolId, classId);
+        return ResponseEntity.ok(objectMapper.mapClassEntityToDto(schoolClass));
+    }
+
 }

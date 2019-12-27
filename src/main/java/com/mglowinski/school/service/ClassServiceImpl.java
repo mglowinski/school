@@ -57,4 +57,10 @@ public class ClassServiceImpl implements ClassService {
                 .orElseThrow(() -> new EntityNotFoundException("Class not found with id: " + classId));
     }
 
+    @Override
+    public Class getClassBySchoolIdAndClassId(Long schoolId, Long classId) {
+        return classRepository.findByIdAndSchoolId(classId, schoolId)
+                .orElseThrow(() -> new EntityNotFoundException("Class not found with id: " + classId));
+    }
+
 }

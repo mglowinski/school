@@ -12,4 +12,7 @@ public interface ClassService {
     Class createClass(Long schoolId, Class schoolClass);
 
     void assignTutor(Long schoolId, Long classId, AssignedTutorDto assignedTutorDto);
+
+    Class getClassBySchoolIdAndClassId(Long schoolId, Long classId);
+
 }
