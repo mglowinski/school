@@ -23,4 +23,6 @@ public class ClassDto implements Serializable {
     private String name;
 
     private String specialization;
+
+    private TeacherDto tutor;
 }

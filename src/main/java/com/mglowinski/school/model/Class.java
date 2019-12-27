@@ -25,4 +25,8 @@ public class Class {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private School school;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Teacher tutor;
 }
