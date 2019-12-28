@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,6 @@ public class TeacherDto implements Serializable {
 
     @NotNull(message = "Teacher email must be provided")
     private String email;
+
+    private Set<SubjectDto> subjects;
 }

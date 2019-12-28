@@ -14,5 +14,4 @@ public interface ClassService {
     void assignTutor(Long schoolId, Long classId, AssignedTutorDto assignedTutorDto);
 
     Class getClassBySchoolIdAndClassId(Long schoolId, Long classId);
-
 }

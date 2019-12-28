@@ -1,5 +1,7 @@
 package com.mglowinski.school.controller;
 
+import com.mglowinski.school.dto.AssignedSubjectDto;
+import com.mglowinski.school.dto.CreateTeacherDto;
 import com.mglowinski.school.dto.TeacherDto;
 import com.mglowinski.school.model.Teacher;
 import com.mglowinski.school.service.TeacherService;
@@ -38,10 +40,18 @@ public class TeacherController {
 
     @PostMapping("/schools/{schoolId}/teachers")
     public ResponseEntity<TeacherDto> createTeacher(@PathVariable Long schoolId,
-                                                    @RequestBody @Valid TeacherDto teacherDto) {
-        Teacher teacher = objectMapper.mapTeacherDtoToEntity(teacherDto);
+                                                    @RequestBody @Valid CreateTeacherDto createTeacherDto) {
+        Teacher teacher = objectMapper.mapCreateTeacherDtoToEntity(createTeacherDto);
         Teacher createdTeacher = teacherService.createTeacher(schoolId, teacher);
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapTeacherEntityToDto(createdTeacher));
+    }
+
+    @PostMapping("/schools/{schoolId}/teachers/{teacherId}/subjects")
+    public ResponseEntity<TeacherDto> addSubjectToTeacher(@PathVariable Long schoolId,
+                                                          @PathVariable Long teacherId,
+                                                          @RequestBody AssignedSubjectDto assignedSubjectDto) {
+        Teacher teacher = teacherService.assignSubject(schoolId, teacherId, assignedSubjectDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapTeacherEntityToDto(teacher));
     }
 
 }

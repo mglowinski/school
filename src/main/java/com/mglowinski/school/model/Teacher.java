@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,4 +32,7 @@ public class Teacher {
 
     @OneToOne(mappedBy = "tutor", fetch = FetchType.LAZY)
     private Class schoolClass;
+
+    @ManyToMany(mappedBy = "teachers")
+    private List<Subject> subjects = new ArrayList<>();
 }
