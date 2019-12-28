@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,11 +25,11 @@ public class School {
     private Address address;
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
-    private List<Subject> subjects;
+    private List<Subject> subjects = new ArrayList<>();
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
-    private List<Class> classes;
+    private List<Class> classes = new ArrayList<>();
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
-    private List<Teacher> teachers;
+    private List<Teacher> teachers = new ArrayList<>();
 }
