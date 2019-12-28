@@ -9,8 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 @Component
 public class ObjectMapper {
 
@@ -22,11 +20,7 @@ public class ObjectMapper {
     }
 
     public School mapCreateSchoolDtoToEntity(CreateSchoolDto createSchoolDto) {
-        School school = modelMapper.map(createSchoolDto, School.class);
-        school.setSubjects(Collections.emptyList());
-        school.setClasses(Collections.emptyList());
-        school.setTeachers(Collections.emptyList());
-        return school;
+        return modelMapper.map(createSchoolDto, School.class);
     }
 
     public SchoolDto mapSchoolEntityToDto(School school) {
@@ -53,8 +47,8 @@ public class ObjectMapper {
         return modelMapper.map(teacher, TeacherDto.class);
     }
 
-    public Teacher mapTeacherDtoToEntity(TeacherDto teacherDto) {
-        return modelMapper.map(teacherDto, Teacher.class);
+    public Teacher mapCreateTeacherDtoToEntity(CreateTeacherDto createTeacherDto) {
+        return modelMapper.map(createTeacherDto, Teacher.class);
     }
 
 }
