@@ -32,4 +32,7 @@ public class School {
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     private List<Teacher> teachers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+    private List<Student> students = new ArrayList<>();
 }
