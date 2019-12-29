@@ -2,9 +2,7 @@ package com.mglowinski.school.utils;
 
 import com.mglowinski.school.dto.*;
 import com.mglowinski.school.model.Class;
-import com.mglowinski.school.model.School;
-import com.mglowinski.school.model.Subject;
-import com.mglowinski.school.model.Teacher;
+import com.mglowinski.school.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,6 +47,14 @@ public class ObjectMapper {
 
     public Teacher mapCreateTeacherDtoToEntity(CreateTeacherDto createTeacherDto) {
         return modelMapper.map(createTeacherDto, Teacher.class);
+    }
+
+    public StudentDto mapStudentEntityToDto(Student student) {
+        return modelMapper.map(student, StudentDto.class);
+    }
+
+    public Student mapCreateStudentDtoToEntity(CreateStudentDto createStudentDto) {
+        return modelMapper.map(createStudentDto, Student.class);
     }
 
 }
