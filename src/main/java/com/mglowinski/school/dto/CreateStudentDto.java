@@ -11,12 +11,15 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateSchoolDto implements Serializable {
+public class CreateStudentDto implements Serializable {
 
-    private static final long serialVersionUID = -6435011444804184661L;
+    private static final long serialVersionUID = -8127076575675033570L;
 
-    @NotNull(message = "School name must be provided")
-    private String name;
+    @NotNull(message = "Student firstName must be provided")
+    private String firstName;
+
+    @NotNull(message = "Student lastName must be provided")
+    private String lastName;
 
     @NotNull(message = "Address must be provided")
     @Valid

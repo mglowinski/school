@@ -14,8 +14,6 @@ public class CreateTeacherDto implements Serializable {
 
     private static final long serialVersionUID = -3417056965669018976L;
 
-    private Long id;
-
     @NotNull(message = "Teacher firstName must be provided")
     private String firstName;
 
