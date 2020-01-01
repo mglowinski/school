@@ -31,7 +31,7 @@ public class StudentController {
     public ResponseEntity<List<StudentDto>> getAllStudentsBySchoolId(@PathVariable Long schoolId) {
         List<Student> students = studentService.getAllStudentsBySchoolId(schoolId);
         List<StudentDto> studentsDto = students.stream()
-                .map(objectMapper::mapStudentEntityToDto)
+                .map(objectMapper::mapStudentEntityToStudentDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(studentsDto);
     }
@@ -41,7 +41,7 @@ public class StudentController {
                                                     @RequestBody CreateStudentDto createStudentDto) {
         Student student = objectMapper.mapCreateStudentDtoToEntity(createStudentDto);
         Student createdStudent = studentService.createStudent(schoolId, student);
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapStudentEntityToDto(createdStudent));
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapStudentEntityToStudentDto(createdStudent));
     }
 
 }

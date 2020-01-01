@@ -49,12 +49,16 @@ public class ObjectMapper {
         return modelMapper.map(createTeacherDto, Teacher.class);
     }
 
-    public StudentDto mapStudentEntityToDto(Student student) {
+    public StudentDto mapStudentEntityToStudentDto(Student student) {
         return modelMapper.map(student, StudentDto.class);
     }
 
     public Student mapCreateStudentDtoToEntity(CreateStudentDto createStudentDto) {
         return modelMapper.map(createStudentDto, Student.class);
+    }
+
+    public StudentWithoutClassDto mapStudentEntityToStudentWithoutClassDto(Student student) {
+        return modelMapper.map(student, StudentWithoutClassDto.class);
     }
 
 }

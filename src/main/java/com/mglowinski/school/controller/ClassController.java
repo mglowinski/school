@@ -1,8 +1,11 @@
 package com.mglowinski.school.controller;
 
+import com.mglowinski.school.dto.AssignedStudentDto;
 import com.mglowinski.school.dto.AssignedTutorDto;
 import com.mglowinski.school.dto.ClassDto;
+import com.mglowinski.school.dto.StudentWithoutClassDto;
 import com.mglowinski.school.model.Class;
+import com.mglowinski.school.model.Student;
 import com.mglowinski.school.service.ClassService;
 import com.mglowinski.school.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +61,26 @@ public class ClassController {
                                                                  @PathVariable Long classId) {
         Class schoolClass = classService.getClassBySchoolIdAndClassId(schoolId, classId);
         return ResponseEntity.ok(objectMapper.mapClassEntityToDto(schoolClass));
+    }
+
+    @GetMapping("/schools/{schoolId}/classes/{classId}/students")
+    public ResponseEntity<List<StudentWithoutClassDto>> getAllStudentsFromClass(
+            @PathVariable Long schoolId,
+            @PathVariable Long classId) {
+        List<Student> students = classService.getAllStudentsFromClass(schoolId, classId);
+        List<StudentWithoutClassDto> studentWithoutClassesDto = students.stream()
+                .map(objectMapper::mapStudentEntityToStudentWithoutClassDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(studentWithoutClassesDto);
+    }
+
+    @PostMapping("/schools/{schoolId}/classes/{classId}/students")
+    public ResponseEntity<Void> addStudentToClass(
+            @PathVariable Long schoolId,
+            @PathVariable Long classId,
+            @RequestBody AssignedStudentDto assignedStudentDto) {
+        classService.addStudentToClass(schoolId, classId, assignedStudentDto);
+        return ResponseEntity.noContent().build();
     }
 
 }
