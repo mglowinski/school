@@ -58,8 +58,8 @@ public class SchoolController {
 
     @PatchMapping("/schools/{id}/address")
     public ResponseEntity<Void> updateSchoolAddress(@PathVariable Long id,
-                                                    @RequestBody Map<String, Object> updateFields) {
-        schoolService.updateAddress(id, updateFields);
+                                                    @RequestBody Map<String, Object> updatedFields) {
+        schoolService.updateAddress(id, updatedFields);
         return ResponseEntity.noContent().build();
     }
 

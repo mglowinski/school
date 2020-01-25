@@ -36,19 +36,19 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public void updateAddress(Long id, Map<String, Object> updateFields) {
+    public void updateAddress(Long id, Map<String, Object> updatedFields) {
         School school = getSchoolById(id);
 
-        if (updateFields.containsKey("street")) {
-            school.getAddress().setStreet((String) updateFields.get("street"));
+        if (updatedFields.containsKey("street")) {
+            school.getAddress().setStreet((String) updatedFields.get("street"));
         }
 
-        if (updateFields.containsKey("city")) {
-            school.getAddress().setCity((String) updateFields.get("city"));
+        if (updatedFields.containsKey("city")) {
+            school.getAddress().setCity((String) updatedFields.get("city"));
         }
 
-        if (updateFields.containsKey("zipCode")) {
-            school.getAddress().setZipCode((String) updateFields.get("zipCode"));
+        if (updatedFields.containsKey("zipCode")) {
+            school.getAddress().setZipCode((String) updatedFields.get("zipCode"));
         }
 
         schoolRepository.save(school);
