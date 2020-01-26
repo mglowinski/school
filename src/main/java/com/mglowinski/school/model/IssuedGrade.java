@@ -8,14 +8,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Issued_Grades")
 @NoArgsConstructor
 @AllArgsConstructor
-public class IssuedGrades {
+public class Diary {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    private Class schoolClass;
+
+    @ManyToOne
+    private Student student;
 
     @ManyToOne
     private Subject subject;

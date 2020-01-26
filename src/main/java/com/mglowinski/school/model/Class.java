@@ -34,4 +34,7 @@ public class Class {
 
     @OneToMany(mappedBy = "schoolClass")
     private List<Student> students = new ArrayList<>();
+
+    @OneToMany(mappedBy = "schoolClass")
+    private List<IssuedGrade> issuedGrades = new ArrayList<>();
 }
