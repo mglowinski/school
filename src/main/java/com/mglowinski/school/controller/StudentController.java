@@ -51,9 +51,8 @@ public class StudentController {
     }
 
     @GetMapping("/schools/{schoolId}/classes/{classId}/students")
-    public ResponseEntity<List<StudentWithoutClassDto>> getAllStudentsFromClass(
-            @PathVariable Long schoolId,
-            @PathVariable Long classId) {
+    public ResponseEntity<List<StudentWithoutClassDto>> getAllStudentsFromClass(@PathVariable Long schoolId,
+                                                                                @PathVariable Long classId) {
         List<Student> students = classService.getAllStudentsFromClass(schoolId, classId);
         List<StudentWithoutClassDto> studentWithoutClassesDto = students.stream()
                 .map(objectMapper::mapStudentEntityToStudentWithoutClassDto)
@@ -62,10 +61,9 @@ public class StudentController {
     }
 
     @PostMapping("/schools/{schoolId}/classes/{classId}/students")
-    public ResponseEntity<Void> addStudentToClass(
-            @PathVariable Long schoolId,
-            @PathVariable Long classId,
-            @RequestBody AssignedStudentDto assignedStudentDto) {
+    public ResponseEntity<Void> addStudentToClass(@PathVariable Long schoolId,
+                                                  @PathVariable Long classId,
+                                                  @RequestBody AssignedStudentDto assignedStudentDto) {
         classService.addStudentToClass(schoolId, classId, assignedStudentDto);
         return ResponseEntity.noContent().build();
     }
