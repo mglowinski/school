@@ -61,4 +61,8 @@ public class ObjectMapper {
         return modelMapper.map(student, StudentWithoutClassDto.class);
     }
 
+    public IssuedGradeDto mapIssuedGradeEntityToIssuedGradeDto(IssuedGrade issuedGrade) {
+        return modelMapper.map(issuedGrade, IssuedGradeDto.class);
+    }
+
 }
