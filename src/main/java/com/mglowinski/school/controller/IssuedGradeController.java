@@ -27,7 +27,7 @@ public class IssuedGradeController {
         this.objectMapper = objectMapper;
     }
 
-    @GetMapping("/classes/{classId}/issued-grades")
+    @GetMapping("/schools/{schoolId}/classes/{classId}/issued-grades")
     public ResponseEntity<List<IssuedGradeDto>> getIssuedGradesByClassId(@PathVariable Long classId) {
         List<IssuedGrade> issuedGrades = issuedGradeService.getIssuedGradesByClassId(classId);
         List<IssuedGradeDto> issuedGradesDto = issuedGrades.stream()

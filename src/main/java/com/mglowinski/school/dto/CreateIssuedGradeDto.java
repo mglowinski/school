@@ -14,15 +14,15 @@ public class CreateIssuedGradeDto implements Serializable {
 
     private static final long serialVersionUID = 1887356175157030481L;
 
-    @NotNull
+    @NotNull(message = "Student ID must be provided")
     private Long studentId;
 
-    @NotNull
+    @NotNull(message = "Subject ID must be provided")
     private Long subjectId;
 
-    @NotNull
+    @NotNull(message = "Teacher ID must be provided")
     private Long teacherId;
 
-    @NotNull
+    @NotNull(message = "Rate ID must be provided")
     private Long rateId;
 }
