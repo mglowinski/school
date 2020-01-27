@@ -33,6 +33,6 @@ public class Teacher {
     @OneToOne(mappedBy = "tutor", fetch = FetchType.LAZY)
     private Class schoolClass;
 
-    @ManyToMany(mappedBy = "teachers")
-    private List<Subject> subjects = new ArrayList<>();
+    @OneToMany(mappedBy = "subject")
+    private List<SubjectTeacher> subjectTeachers = new ArrayList<>();
 }

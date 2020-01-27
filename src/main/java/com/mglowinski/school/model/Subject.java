@@ -24,11 +24,6 @@ public class Subject {
     @JoinColumn
     private School school;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Subject_Teacher",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id")
-    )
-    private List<Teacher> teachers = new ArrayList<>();
+    @OneToMany(mappedBy = "subject")
+    private List<SubjectTeacher> subjectTeachers = new ArrayList<>();
 }
