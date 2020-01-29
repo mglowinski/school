@@ -3,18 +3,25 @@ package com.mglowinski.school.utils;
 import com.mglowinski.school.dto.*;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.model.*;
+import com.mglowinski.school.repository.SubjectTeacherRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ObjectMapper {
 
     private final ModelMapper modelMapper;
+    private final SubjectTeacherRepository subjectTeacherRepository;
 
     @Autowired
-    public ObjectMapper(ModelMapper modelMapper) {
+    public ObjectMapper(ModelMapper modelMapper,
+                        SubjectTeacherRepository subjectTeacherRepository) {
         this.modelMapper = modelMapper;
+        this.subjectTeacherRepository = subjectTeacherRepository;
     }
 
     public School mapCreateSchoolDtoToEntity(CreateSchoolDto createSchoolDto) {
@@ -42,7 +49,24 @@ public class ObjectMapper {
     }
 
     public TeacherDto mapTeacherEntityToDto(Teacher teacher) {
-        return modelMapper.map(teacher, TeacherDto.class);
+       /* List<SubjectDto> subjects =
+                subjectTeacherRepository.retrieveSubjectsByTeacherId(teacher.getId());
+        TeacherDto teacherDto = modelMapper.map(teacher, TeacherDto.class);
+        teacherDto.setSubjects(subjects);*/
+
+        List<Subject> subjects = teacher.getSubjectTeachers()
+                .stream()
+                .map(SubjectTeacher::getSubject)
+                .collect(Collectors.toList());
+
+        List<SubjectDto> subjectsDto = subjects.stream()
+                .map(this::mapSubjectEntityToDto)
+                .collect(Collectors.toList());
+
+        TeacherDto teacherDto = modelMapper.map(teacher, TeacherDto.class);
+        teacherDto.setSubjects(subjectsDto);
+
+        return teacherDto;
     }
 
     public Teacher mapCreateTeacherDtoToEntity(CreateTeacherDto createTeacherDto) {
