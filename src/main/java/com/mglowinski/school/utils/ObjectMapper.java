@@ -49,11 +49,6 @@ public class ObjectMapper {
     }
 
     public TeacherDto mapTeacherEntityToDto(Teacher teacher) {
-       /* List<SubjectDto> subjects =
-                subjectTeacherRepository.retrieveSubjectsByTeacherId(teacher.getId());
-        TeacherDto teacherDto = modelMapper.map(teacher, TeacherDto.class);
-        teacherDto.setSubjects(subjects);*/
-
         List<Subject> subjects = teacher.getSubjectTeachers()
                 .stream()
                 .map(SubjectTeacher::getSubject)
