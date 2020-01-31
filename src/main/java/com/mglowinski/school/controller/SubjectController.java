@@ -2,6 +2,7 @@ package com.mglowinski.school.controller;
 
 import com.mglowinski.school.dto.CreateSubjectDto;
 import com.mglowinski.school.dto.SubjectDto;
+import com.mglowinski.school.dto.SubjectWithTeachersDto;
 import com.mglowinski.school.model.Subject;
 import com.mglowinski.school.service.SubjectService;
 import com.mglowinski.school.utils.ObjectMapper;
@@ -29,10 +30,10 @@ public class SubjectController {
     }
 
     @GetMapping("/schools/{schoolId}/subjects")
-    public ResponseEntity<List<SubjectDto>> getAllSubjectsBySchoolId(@PathVariable Long schoolId) {
+    public ResponseEntity<List<SubjectWithTeachersDto>> getAllSubjectsBySchoolId(@PathVariable Long schoolId) {
         List<Subject> subjects = subjectService.getAllSubjectsBySchoolId(schoolId);
-        List<SubjectDto> subjectsDto = subjects.stream()
-                .map(objectMapper::mapSubjectEntityToDto)
+        List<SubjectWithTeachersDto> subjectsDto = subjects.stream()
+                .map(objectMapper::mapSubjectEntityToSubjectWithTeachersDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(subjectsDto);
     }

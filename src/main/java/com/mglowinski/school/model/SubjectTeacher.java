@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,4 +25,7 @@ public class SubjectTeacher {
 
     @ManyToOne
     private Teacher teacher;
+
+    @OneToMany(mappedBy = "subjectTeacher")
+    private List<ClassSubjectTeacher> classSubjectTeacher;
 }

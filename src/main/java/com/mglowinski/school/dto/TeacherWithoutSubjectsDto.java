@@ -5,19 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherDto implements Serializable {
+public class TeacherWithoutSubjectsDto implements Serializable {
 
-    private static final long serialVersionUID = 3662233273296427789L;
+    private static final long serialVersionUID = 3662233273296427783L;
 
     private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String email;
-    private List<SubjectDto> subjects;
 }

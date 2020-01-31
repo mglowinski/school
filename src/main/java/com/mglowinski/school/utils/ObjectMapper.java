@@ -36,8 +36,30 @@ public class ObjectMapper {
         return modelMapper.map(createSubjectDto, Subject.class);
     }
 
+    public SubjectWithTeachersDto mapSubjectEntityToSubjectWithTeachersDto(Subject subject) {
+        List<Teacher> teachers = subject.getSubjectTeachers()
+                .stream()
+                .map(SubjectTeacher::getTeacher)
+                .collect(Collectors.toList());
+
+        List<TeacherWithoutSubjectsDto> teacherWithoutSubjectsDto = teachers.stream()
+                .map(this::mapTeacherEntityToTeacherWithoutSubjectDto)
+                .collect(Collectors.toList());
+
+        SubjectWithTeachersDto subjectWithTeachersDto =
+                modelMapper.map(subject, SubjectWithTeachersDto.class);
+
+        subjectWithTeachersDto.setTeachers(teacherWithoutSubjectsDto);
+
+        return subjectWithTeachersDto;
+    }
+
     public SubjectDto mapSubjectEntityToDto(Subject subject) {
         return modelMapper.map(subject, SubjectDto.class);
+    }
+
+    public TeacherWithoutSubjectsDto mapTeacherEntityToTeacherWithoutSubjectDto(Teacher teacher) {
+        return modelMapper.map(teacher, TeacherWithoutSubjectsDto.class);
     }
 
     public ClassDto mapClassEntityToDto(Class schoolClass) {
