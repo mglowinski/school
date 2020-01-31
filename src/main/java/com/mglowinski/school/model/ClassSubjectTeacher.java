@@ -1,7 +1,6 @@
 package com.mglowinski.school.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Builder
 @Table(name = "Class_Subject_Teacher")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,4 +22,10 @@ public class ClassSubjectTeacher {
 
     @ManyToOne
     private SubjectTeacher subjectTeacher;
+
+    public ClassSubjectTeacher(Class schoolClass, SubjectTeacher subjectTeacher) {
+        this.schoolClass = schoolClass;
+        this.subjectTeacher = subjectTeacher;
+    }
+
 }
