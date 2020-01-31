@@ -1,6 +1,7 @@
 package com.mglowinski.school.service;
 
 import com.mglowinski.school.dto.AssignedStudentDto;
+import com.mglowinski.school.dto.AssignedSubjectWithTeacherDto;
 import com.mglowinski.school.dto.AssignedTutorDto;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.model.Student;
@@ -14,6 +15,9 @@ public interface ClassService {
     Class createClass(Long schoolId, Class schoolClass);
 
     void assignTutor(Long schoolId, Long classId, AssignedTutorDto assignedTutorDto);
+
+    void assignSubjectWithTeacher(Long schoolId, Long classId,
+                                  AssignedSubjectWithTeacherDto assignedSubjectWithTeacherDto);
 
     Class getClassBySchoolIdAndClassId(Long schoolId, Long classId);
 

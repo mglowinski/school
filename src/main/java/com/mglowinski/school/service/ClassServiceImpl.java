@@ -1,14 +1,11 @@
 package com.mglowinski.school.service;
 
 import com.mglowinski.school.dto.AssignedStudentDto;
+import com.mglowinski.school.dto.AssignedSubjectWithTeacherDto;
 import com.mglowinski.school.dto.AssignedTutorDto;
 import com.mglowinski.school.model.Class;
-import com.mglowinski.school.model.Student;
-import com.mglowinski.school.model.Teacher;
-import com.mglowinski.school.repository.ClassRepository;
-import com.mglowinski.school.repository.SchoolRepository;
-import com.mglowinski.school.repository.StudentRepository;
-import com.mglowinski.school.repository.TeacherRepository;
+import com.mglowinski.school.model.*;
+import com.mglowinski.school.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +19,23 @@ public class ClassServiceImpl implements ClassService {
     private final SchoolRepository schoolRepository;
     private final TeacherRepository teacherRepository;
     private final StudentRepository studentRepository;
+    private final SubjectTeacherRepository subjectTeacherRepository;
+    private final ClassSubjectTeacherRepository classSubjectTeacherRepository;
 
     @Autowired
+
     public ClassServiceImpl(ClassRepository classRepository,
                             SchoolRepository schoolRepository,
                             TeacherRepository teacherRepository,
-                            StudentRepository studentRepository) {
+                            StudentRepository studentRepository,
+                            SubjectTeacherRepository subjectTeacherRepository,
+                            ClassSubjectTeacherRepository classSubjectTeacherRepository) {
         this.classRepository = classRepository;
         this.schoolRepository = schoolRepository;
         this.teacherRepository = teacherRepository;
         this.studentRepository = studentRepository;
+        this.subjectTeacherRepository = subjectTeacherRepository;
+        this.classSubjectTeacherRepository = classSubjectTeacherRepository;
     }
 
     @Override
@@ -61,6 +65,25 @@ public class ClassServiceImpl implements ClassService {
                     return classRepository.save(schoolClass);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Class not found with id: " + classId));
+    }
+
+    @Override
+    public void assignSubjectWithTeacher(Long schoolId,
+                                         Long classId,
+                                         AssignedSubjectWithTeacherDto assignedSubjectWithTeacherDto) {
+        SubjectTeacher subjectTeacher
+                = subjectTeacherRepository.findBySubjectIdAndTeacherId(
+                assignedSubjectWithTeacherDto.getSubjectId(),
+                assignedSubjectWithTeacherDto.getTeacherId())
+                .orElseThrow(() -> new EntityNotFoundException("Subject-Teacher not found"));
+
+        Class schoolClass = classRepository.findByIdAndSchoolId(classId, schoolId)
+                .orElseThrow(() -> new EntityNotFoundException("Class not found with id: " + classId));
+
+        ClassSubjectTeacher classSubjectTeacher =
+                new ClassSubjectTeacher(schoolClass, subjectTeacher);
+
+        classSubjectTeacherRepository.save(classSubjectTeacher);
     }
 
     @Override
