@@ -49,6 +49,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher getTeacherBySchoolIdAndTeacherId(Long schoolId, Long teacherId) {
+        return teacherRepository.findByIdAndSchoolId(teacherId, schoolId)
+                .orElseThrow(() -> new EntityNotFoundException("Teacher not found with id: " + teacherId));
+    }
+
+    @Override
     public Teacher assignSubject(Long schoolId,
                                  Long teacherId,
                                  AssignedSubjectDto assignedSubjectDto) {

@@ -11,5 +11,7 @@ public interface TeacherService {
 
     Teacher createTeacher(Long schoolId, Teacher teacher);
 
+    Teacher getTeacherBySchoolIdAndTeacherId(Long schoolId, Long teacherId);
+
     Teacher assignSubject(Long schoolId, Long teacherId, AssignedSubjectDto assignedSubjectDto);
 }

@@ -46,6 +46,13 @@ public class TeacherController {
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapper.mapTeacherEntityToDto(createdTeacher));
     }
 
+    @GetMapping("/schools/{schoolId}/teachers/{teacherId}")
+    public ResponseEntity<TeacherDto> getTeacherBySchoolIdAndTeacherId(@PathVariable Long schoolId,
+                                                                       @PathVariable Long teacherId) {
+        Teacher teacher = teacherService.getTeacherBySchoolIdAndTeacherId(schoolId, teacherId);
+        return ResponseEntity.ok(objectMapper.mapTeacherEntityToDto(teacher));
+    }
+
     @PostMapping("/schools/{schoolId}/teachers/{teacherId}/subjects")
     public ResponseEntity<TeacherDto> addSubjectToTeacher(@PathVariable Long schoolId,
                                                           @PathVariable Long teacherId,
