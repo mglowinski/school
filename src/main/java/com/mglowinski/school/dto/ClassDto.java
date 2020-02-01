@@ -24,5 +24,5 @@ public class ClassDto implements Serializable {
 
     private String specialization;
 
-    private TeacherDto tutor;
+    private TutorDto tutor;
 }
