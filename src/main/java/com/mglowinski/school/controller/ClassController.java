@@ -62,7 +62,7 @@ public class ClassController {
         return ResponseEntity.ok(objectMapper.mapClassEntityToClassSubjectTeacherDto(schoolClass));
     }
 
-    @PutMapping("/schools/{schoolId}/classes/{classId}/assign")
+    @PutMapping("/schools/{schoolId}/classes/{classId}/subjects-teachers")
     public ResponseEntity<Void> assignSubjectWithTeacherToClass(@PathVariable Long schoolId,
                                                                 @PathVariable Long classId,
                                                                 @RequestBody AssignedSubjectWithTeacherDto
