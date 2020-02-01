@@ -3,6 +3,7 @@ package com.mglowinski.school.controller;
 import com.mglowinski.school.dto.AssignedSubjectWithTeacherDto;
 import com.mglowinski.school.dto.AssignedTutorDto;
 import com.mglowinski.school.dto.ClassDto;
+import com.mglowinski.school.dto.ClassSubjectTeacherDto;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.service.ClassService;
 import com.mglowinski.school.utils.ObjectMapper;
@@ -55,10 +56,10 @@ public class ClassController {
     }
 
     @GetMapping("/schools/{schoolId}/classes/{classId}")
-    public ResponseEntity<ClassDto> getClassBySchoolIdAndClassId(@PathVariable Long schoolId,
-                                                                 @PathVariable Long classId) {
+    public ResponseEntity<ClassSubjectTeacherDto> getClassBySchoolIdAndClassId(@PathVariable Long schoolId,
+                                                                               @PathVariable Long classId) {
         Class schoolClass = classService.getClassBySchoolIdAndClassId(schoolId, classId);
-        return ResponseEntity.ok(objectMapper.mapClassEntityToDto(schoolClass));
+        return ResponseEntity.ok(objectMapper.mapClassEntityToClassSubjectTeacherDto(schoolClass));
     }
 
     @PutMapping("/schools/{schoolId}/classes/{classId}/assign")

@@ -66,6 +66,24 @@ public class ObjectMapper {
         return modelMapper.map(schoolClass, ClassDto.class);
     }
 
+    public ClassSubjectTeacherDto mapClassEntityToClassSubjectTeacherDto(Class schoolClass) {
+        ClassSubjectTeacherDto classSubjectTeacherDto =
+                modelMapper.map(schoolClass, ClassSubjectTeacherDto.class);
+
+        List<SubjectTeacherDto> subjectsTeachersDto = schoolClass.getClassSubjectsTeachers()
+                .stream()
+                .map(classSubjectTeacher -> mapSubjectTeacherEntityToDto(classSubjectTeacher.getSubjectTeacher()))
+                .collect(Collectors.toList());
+
+        classSubjectTeacherDto.setSubjectsTeachers(subjectsTeachersDto);
+
+        return classSubjectTeacherDto;
+    }
+
+    private SubjectTeacherDto mapSubjectTeacherEntityToDto(SubjectTeacher subjectTeacher) {
+        return modelMapper.map(subjectTeacher, SubjectTeacherDto.class);
+    }
+
     public Class mapClassDtoToEntity(ClassDto classDto) {
         return modelMapper.map(classDto, Class.class);
     }

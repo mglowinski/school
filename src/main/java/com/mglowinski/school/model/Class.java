@@ -39,5 +39,5 @@ public class Class {
     private List<IssuedGrade> issuedGrades = new ArrayList<>();
 
     @OneToMany(mappedBy = "schoolClass")
-    private List<ClassSubjectTeacher> classSubjectTeachers = new ArrayList<>();
+    private List<ClassSubjectTeacher> classSubjectsTeachers = new ArrayList<>();
 }
