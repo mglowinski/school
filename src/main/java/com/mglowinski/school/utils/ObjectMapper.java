@@ -3,7 +3,6 @@ package com.mglowinski.school.utils;
 import com.mglowinski.school.dto.*;
 import com.mglowinski.school.model.Class;
 import com.mglowinski.school.model.*;
-import com.mglowinski.school.repository.SubjectTeacherRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +14,10 @@ import java.util.stream.Collectors;
 public class ObjectMapper {
 
     private final ModelMapper modelMapper;
-    private final SubjectTeacherRepository subjectTeacherRepository;
 
     @Autowired
-    public ObjectMapper(ModelMapper modelMapper,
-                        SubjectTeacherRepository subjectTeacherRepository) {
+    public ObjectMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
-        this.subjectTeacherRepository = subjectTeacherRepository;
     }
 
     public School mapCreateSchoolDtoToEntity(CreateSchoolDto createSchoolDto) {
@@ -122,6 +118,14 @@ public class ObjectMapper {
 
     public IssuedGradeDto mapIssuedGradeEntityToIssuedGradeDto(IssuedGrade issuedGrade) {
         return modelMapper.map(issuedGrade, IssuedGradeDto.class);
+    }
+
+    public Comment mapCreateCommentDtoToEntity(CreateCommentDto createCommentDto) {
+        return modelMapper.map(createCommentDto, Comment.class);
+    }
+
+    public CommentDto mapCommentEntityToDto(Comment comment) {
+        return modelMapper.map(comment, CommentDto.class);
     }
 
 }
