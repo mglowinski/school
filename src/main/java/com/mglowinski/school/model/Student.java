@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +33,7 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Class schoolClass;
+
+    @OneToMany(mappedBy = "student")
+    private List<Comment> comments = new ArrayList<>();
 }

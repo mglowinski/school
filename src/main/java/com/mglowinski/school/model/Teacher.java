@@ -35,4 +35,7 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher")
     private List<SubjectTeacher> subjectTeachers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Comment> comments = new ArrayList<>();
 }
