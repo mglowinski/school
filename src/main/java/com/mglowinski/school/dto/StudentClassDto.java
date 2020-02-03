@@ -14,10 +14,7 @@ public class StudentClassDto implements Serializable {
     private static final long serialVersionUID = -5536105221079990765L;
 
     private Long id;
-
     private String level;
-
     private String name;
-
     private String specialization;
 }

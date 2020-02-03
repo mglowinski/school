@@ -15,12 +15,8 @@ public class IssuedGradeDto implements Serializable {
     private static final long serialVersionUID = 357280077607086057L;
 
     private Long id;
-
     private Date date;
-
     private StudentWithoutClassDto student;
-
     private SubjectDto subject;
-
     private RateDto rate;
 }

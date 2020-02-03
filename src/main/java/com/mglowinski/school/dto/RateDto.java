@@ -14,8 +14,6 @@ public class RateDto implements Serializable {
     private static final long serialVersionUID = 6074041352194518942L;
 
     private Long id;
-
     private String fullName;
-
     private int value;
 }
