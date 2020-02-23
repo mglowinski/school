@@ -25,7 +25,6 @@ public class Class {
     private String specialization;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
     private School school;
 
     @OneToOne(fetch = FetchType.LAZY)

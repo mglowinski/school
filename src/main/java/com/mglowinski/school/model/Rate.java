@@ -21,6 +21,5 @@ public class Rate {
     private int value;
 
     @ManyToOne
-    @JoinColumn
     private School school;
 }

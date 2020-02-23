@@ -21,7 +21,6 @@ public class Subject {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
     private School school;
 
     @OneToMany(mappedBy = "subject")

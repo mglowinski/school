@@ -27,11 +27,9 @@ public class Student {
     private Address address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
     private School school;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
     private Class schoolClass;
 
     @OneToMany(mappedBy = "student")
